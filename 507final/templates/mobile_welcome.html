@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome</title>
+    </head>
+    <body>
+        <h1>Welcome to MSBA Bank Online Queue System</h1>
+    </body>
+        
+        <form action="/mobile" method="post">
+        <p>Choose your branch</p>
+
+        <input type = "radio" id = "Branch1" name = "Branch" value = '0'>
+        <label for = "personal">East Branch</label><br>
+        <input type = "radio" id = "Branch2" name = "Branch" value = '1'>
+        <label for = "business">West Branch</label><br>
+        <input type = "radio" id = "Branch3" name = "Branch" value = '2'>
+        <label for = "priority">North Branch</label><br>
+
+        <label for ="lname">Last Name:</label><br>
+        <input type ="text" id="lname" name="lname" required><br>
+
+        <label for = "email">Email Address:</label><br>
+        <input type = "text" id = "email" name = "email" required><br>
+        
+        <p>Choose Your Service:</p>
+        <input type = "radio" id = "personal" name = "service" value = "personal">
+        <label for = "personal">Personal</label><br>
+        <input type = "radio" id = "business" name = "service" value = "business">
+        <label for = "business">Business</label><br>
+        <input type = "radio" id = "priority" name = "service" value = "priority">
+        <label for = "priority">Priority (Seniors Only)</label><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p>{{ output_queue }}</p>
+</html>

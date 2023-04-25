@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome</title>
+    </head>
+    <body>
+        <h1>Welcome to MSBA Bank Walkin Queue System ({{ branch }} Branch)</h1>
+    </body>
+        
+        <form action="{{ url_for('walkin_add', branch=branch) }}" method="post">
+
+        <label for ="lname">Last Name:</label><br>
+        <input type ="text" id="lname" name="lname" required><br>
+
+        <label for = "email">Email Address:</label><br>
+        <input type = "text" id = "email" name = "email" required><br>
+        
+        <p>Choose Your Service:</p>
+        <input type = "radio" id = "personal" name = "service" value = "personal">
+        <label for = "personal">Personal</label><br>
+        <input type = "radio" id = "business" name = "service" value = "business">
+        <label for = "business">Business</label><br>
+        <input type = "radio" id = "priority" name = "service" value = "priority">
+        <label for = "priority">Priority (Seniors Only)</label><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p>{{ output_queue }}</p>
+</html>

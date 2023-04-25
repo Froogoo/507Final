@@ -1,0 +1,71 @@
+<head>
+  <h1>{{service}} Service of {{branch}} branch</h1>
+  <h2>Counter {{ id }}</h2>
+</head>
+
+<style>
+table {
+  width: 100%;
+  empty-cells: hide;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #ddd;
+}
+</style>
+
+
+<table style="width:100%">
+  <thead>
+    <tr>
+      <th style="vertical-align:middle; text-align:center; width: 33.33%" colspan="2">Personal Service</th>
+      <th style="vertical-align:middle; text-align:center; width: 33.33%" colspan="2">Business Service</th>
+      <th style="vertical-align:middle; text-align:center; width: 33.33%" colspan="2">Priority Service</th>
+    </tr>
+    <tr>
+      <th style="vertical-align:middle; text-align:center; width: 16.67%">Queue Number</th>
+      <th style="vertical-align:middle; text-align:center; width: 16.67%">Status</th>
+      <th style="vertical-align:middle; text-align:center; width: 16.67%">Queue Number</th>
+      <th style="vertical-align:middle; text-align:center; width: 16.67%">Status</th>
+      <th style="vertical-align:middle; text-align:center; width: 16.67%">Queue Number</th>
+      <th style="vertical-align:middle; text-align:center; width: 16.67%">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in range(max(len(personal), len(business), len(priority))) %}
+      <tr>
+        <td style="vertical-align:middle; text-align:center;">{% if i < len(personal) %}{{ personal[i].queue_number }}{% endif %}</td>
+        <td style="vertical-align:middle; text-align:center;">{% if i < len(personal) %}{{ personal[i].status }}{% endif %}</td>
+        <td style="vertical-align:middle; text-align:center;">{% if i < len(business) %}{{ business[i].queue_number }}{% endif %}</td>
+        <td style="vertical-align:middle; text-align:center;">{% if i < len(business) %}{{ business[i].status }}{% endif %}</td>
+        <td style="vertical-align:middle; text-align:center;">{% if i < len(priority) %}{{ priority[i].queue_number }}{% endif %}</td>
+        <td style="vertical-align:middle; text-align:center;">{% if i < len(priority) %}{{ priority[i].status }}{% endif %}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+<div style="display: flex; justify-content: center; align-items: flex-end; height: 70vh;">
+  <form action="{{ url_for('next', branch=branch, service=service, id=id) }}" method="post">
+    <button type="submit" style="width: 250px; height: 90px; font-size: 40px; margin-right: 100px;"> Next </button>
+  </form>
+
+  <form action="{{ url_for('complete', branch=branch, service=service, id=id, queue_number=queue_number ) }}" method="post">
+    <button type="submit" style="width: 250px; height: 90px; font-size: 40px; margin-right: 100px;"> Complete </button>
+  </form>
+
+  <form action="{{ url_for('miss', branch=branch, service=service, id=id, queue_number=queue_number ) }}" method="post">
+    <button type="submit" style="width: 250px; height: 90px; font-size: 40px;"> Miss </button>
+  </form>
+</div>
+
+
+

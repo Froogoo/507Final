@@ -1,0 +1,74 @@
+<meta http-equiv="refresh" content="5">
+
+<head>
+  <title>Screen</title>
+  <h1>Welcome to MSBA Bank {{ branch }} Branch</h1>
+</head>
+
+
+
+<style>
+table {
+  width: 100%;
+  empty-cells: hide;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #ddd;
+}
+</style>
+
+
+<table style="width:100%">
+  <thead>
+    <tr>
+      <th style="vertical-align:middle; text-align:center; width: 33.33%" colspan="2">Personal Service</th>
+      <th style="vertical-align:middle; text-align:center; width: 33.33%" colspan="2">Business Service</th>
+      <th style="vertical-align:middle; text-align:center; width: 33.33%" colspan="2">Priority Service</th>
+    </tr>
+    <tr>
+      <th style="vertical-align:middle; text-align:center; width: 16.67%">Queue Number</th>
+      <th style="vertical-align:middle; text-align:center; width: 16.67%">Status</th>
+      <th style="vertical-align:middle; text-align:center; width: 16.67%">Queue Number</th>
+      <th style="vertical-align:middle; text-align:center; width: 16.67%">Status</th>
+      <th style="vertical-align:middle; text-align:center; width: 16.67%">Queue Number</th>
+      <th style="vertical-align:middle; text-align:center; width: 16.67%">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in range(max(len(personal), len(business), len(priority))) %}
+      <tr>
+        <td style="vertical-align:middle; text-align:center;">{% if i < len(personal) %}{{ personal[i].queue_number }}{% endif %}</td>
+        <td style="vertical-align:middle; text-align:center;">{% if i < len(personal) %}{{ personal[i].status }}{% endif %}</td>
+        <td style="vertical-align:middle; text-align:center;">{% if i < len(business) %}{{ business[i].queue_number }}{% endif %}</td>
+        <td style="vertical-align:middle; text-align:center;">{% if i < len(business) %}{{ business[i].status }}{% endif %}</td>
+        <td style="vertical-align:middle; text-align:center;">{% if i < len(priority) %}{{ priority[i].queue_number }}{% endif %}</td>
+        <td style="vertical-align:middle; text-align:center;">{% if i < len(priority) %}{{ priority[i].status }}{% endif %}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<html>
+    <body>
+        <form action="{{ url_for('searchMissing', branch=branch) }}">
+            <p>Please enter the Missing Queue Number</p>
+            <p><input type="text" name="queue_num">
+                <input type="submit" value="Enter"></p>
+        </form>
+        <p> {{check}}</p>
+        <form action="{{ url_for('searchMissing', branch=branch) }}">
+            <p>Choose if you want to stop or continue adding customers</p>
+            <p><input type="submit" value="Stop" name = "status">
+            <input type="submit" value="Continue" name = "status"></p>
+        <p> {{niu}} </p>
+        </form>
+    </body>
+</html>
+
